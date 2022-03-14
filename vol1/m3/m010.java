@@ -1,0 +1,69 @@
+import java.util.*;
+
+class m010{
+  static int nrCombs(int n){
+      return  ( n*(n-1) / 2 );
+  }
+
+  static int[] somas;
+  static void somas(int[] v,int n){
+    somas = new int[ nrCombs(n) ];
+    int counter = 0;
+    for(int i=0;i<n-1;i++)
+      for(int j= i+1; j<n;j++)
+        somas[counter++] = v[i] + v[j];
+    Arrays.sort(somas);
+  }
+
+  public static int bsearch1(int goal, int low, int high){
+    while(low<high){
+      int middle = low + (high-low)/2;
+      if( somas[middle] >= goal ) high = middle;
+      else low = middle + 1;
+    }
+    if( somas[low] < goal ) return -1;
+
+    return low;
+  }
+
+  public static void main(String[] args){
+    FastScanner in = new FastScanner(System.in);
+
+    int n = in.nextInt();
+    int[] v = new int[n];
+    for(int i=0;i<n;i++)
+      v[i] = in.nextInt();
+
+    somas(v,n);
+    //
+    // for(int i=0;i<nrCombs(n);i++)
+    //   System.out.print(somas[i] + " ");
+
+    // System.out.println("---------------------");
+    // System.out.println( bsearch1(21,0,somas.length-1));
+    // System.out.println( bsearch2(21,0,somas.length-1));
+
+    int nr_questoes = in.nextInt();
+    for(int i=0;i<nr_questoes;i++){
+      int goal = in.nextInt();
+      int flag = bsearch1(goal, 0, somas.length-1);
+      //System.out.println(flag + " " + goal);
+      if(flag==-1){
+        FastPrint.out.println(somas[somas.length-1]);
+      }else if(flag==0){
+        FastPrint.out.println(somas[0] );
+      }else{
+        int best1 = somas[flag];
+        int best2 = somas[flag-1];
+        if( Math.abs(goal-best1) < Math.abs(goal-best2) ){
+          FastPrint.out.println(best1);
+        }else if ( Math.abs(goal-best1) > Math.abs(goal-best2) ){
+          FastPrint.out.println(best2);
+        }else{
+          FastPrint.out.println(best2 + " " + best1);
+        }
+      }
+    }
+    FastPrint.out.close();
+  }
+}

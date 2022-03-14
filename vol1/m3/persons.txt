@@ -1,0 +1,23 @@
+22
+37 Carlos
+23 Pedro
+56 Herlander
+11 Pedro
+15 Fabio
+19 Pedro
+37 Joao
+20 Ana
+37 Miguel
+15 Eduardo
+16 Rodrigo
+16 Carlos
+18 Rui
+24 Ricardo
+56 Joao
+56 Joana
+37 Bruna
+10 Cristiano
+18 Raul
+19 Alexandra
+19 Juliana
+18 Diogo
